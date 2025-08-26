@@ -1,0 +1,36 @@
+sys.argv 기본 규칙
+
+sys.argv는 파이썬 실행 시 전달된 모든 인자들을 리스트로 담음
+
+항상 맨 앞(sys.argv[0])에는 실행된 스크립트의 파일 이름이 자동으로 들어가요.
+
+python crawl.py 자동차 보험
+
+["crawl.py", "자동차", "보험"]
+
+sys.argv[0] → "crawl.py" (실행한 파일 이름)
+
+sys.argv[1] → "자동차" (첫 번째 사용자 입력)
+
+sys.argv[2] → "보험" (두 번째 사용자 입력)
+
+
+
+---------------------------------------------------------------------
+
+sys.argv == ["crawl.py"]
+len(sys.argv) == 1
+
+if len(sys.argv) < 2:
+    print(json.dumps({"error": "Usage: python crawl.py <keyword>"}))
+
+
+sys.argv == ["crawl.py" , "자동차"]
+
+len(sys.argv) == 2
+
+  else:
+        keyword = sys.argv[1]
+        result = crawl_related_keywords(keyword)
+        # ✅ 여기서 JSON으로 출력
+        print(json.dumps(result, ensure_ascii=False, indent=2))

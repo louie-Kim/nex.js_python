@@ -1,0 +1,5 @@
+2025-08-26 17:48:56,336 - INFO - sys.argv 전체: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '롯데']
+2025-08-26 17:50:35,233 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '롯데']
+2025-08-26 17:52:06,604 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '야구']
+2025-08-26 17:52:53,844 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-26 17:52:53,844 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '리그']
