@@ -1,4 +1,4 @@
-sys.argv 기본 규칙
+sys.argv 기본 규칙: 명령줄 인자(Command Line Arguments)
 
 sys.argv는 파이썬 실행 시 전달된 모든 인자들을 리스트로 담음
 
@@ -34,3 +34,43 @@ len(sys.argv) == 2
         result = crawl_related_keywords(keyword)
         # ✅ 여기서 JSON으로 출력
         print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+---------------------------------------------------------------
+
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+json_path = os.path.join(base_dir, "related_keywords.json")
+
+
+__file__ → 현재 실행 중인 파이썬 파일 경로 (crawl\api\crawl.py)
+
+abspath(__file__) → 그걸 절대 경로로 변환 (D:\project\crawl\api\crawl.py)
+
+dirname(...) → 파일 이름을 떼고 폴더만 가져옴 (D:\project\crawl\api)
+
+os.path.join(..., "related_keywords.json") 
+→ 그 폴더 아래에 "related_keywords.json" 경로 생성 (D:\project\crawl\api\related_keywords.json)
+
+
+------------------------------------------------------------------
+
+ "type": "module"
+ 모듈 시스템이 ESM(ECMAScript Module) 으로 바뀝니다
+ .js 확장자 파일도 import / export 문법을 바로 쓸 수 있어요.
+
+import cron from "node-cron";
+import { exec } from "child_process";
+import path from "path";
+
+이렇게 사용가능 
+
+아니면 CommonJS 방식
+const cron = require("node-cron");
+const { exec } = require("child_process");
+const path = require("path");
+
+
+이렇게 해야 함.
+
+

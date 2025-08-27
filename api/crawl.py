@@ -20,7 +20,7 @@ logging.basicConfig(
 
 def crawl_related_keywords(keyword: str):
     options = Options()
-    options.add_argument("--start-maximized")
+    options.add_argument("--window-size=800,600")
     options.add_experimental_option("detach", True)
 
     driver = webdriver.Chrome(options=options)
@@ -46,23 +46,29 @@ def crawl_related_keywords(keyword: str):
         related_keywords = [item.text.strip() for item in items if item.text.strip()]
 
         # JSON 누적 저장
+        # 절대 경로 지정
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        json_path = os.path.join(base_dir, "related_keywords.json")
         # json_path = "related_keywords.json"
-        # if os.path.exists(json_path) and os.path.getsize(json_path) > 0:
-        #     with open(json_path, "r", encoding="utf-8") as f:
-        #         try:
-        #             existing_data = json.load(f)
-        #             if not isinstance(existing_data, list):
-        #                 existing_data = []
-        #         except json.JSONDecodeError:
-        #             existing_data = []
-        # else:
-        #     existing_data = []
+        if os.path.exists(json_path) and os.path.getsize(json_path) > 0:
+            with open(json_path, "r", encoding="utf-8") as f:
+                try:
+                    existing_data = json.load(f)
+                    if not isinstance(existing_data, list):
+                        print("[DEBUG] 기존 데이터가 list 아님. 빈 리스트로 초기화")
+                        existing_data = []
+                except json.JSONDecodeError:
+                    existing_data = []
+        else:
+            existing_data = []
 
-        # existing_data = [entry for entry in existing_data if entry.get("keyword") != keyword]
-        # existing_data.append({"keyword": keyword, "related": related_keywords})
+        existing_data = [
+            entry for entry in existing_data if entry.get("keyword") != keyword
+        ]
+        existing_data.append({"keyword": keyword, "related": related_keywords})
 
-        # with open(json_path, "w", encoding="utf-8") as f:
-        #     json.dump(existing_data, f, ensure_ascii=False, indent=2)
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(existing_data, f, ensure_ascii=False, indent=2)
 
     finally:
         driver.quit()

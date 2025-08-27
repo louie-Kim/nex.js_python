@@ -15,13 +15,17 @@ export async function GET(req: NextRequest) {
   }
 
   return new Promise((resolve) => {
-    // crawl/api/crawl.py 경로
+    // cwd() = Current Working Directory
+    // D:\vsCodeWorkSpace\selenium_next.js\crawl + \api\crawl.py
     const scriptPath = path.join(process.cwd(), "api", "crawl.py");
+
+    console.log("Current working directory:@@@@@@@@@@@@@@@@@", process.cwd()); // 현재 작업중인 위치의 최상위 경로
+    
 
     console.log(`Executing script at: ${scriptPath} with keyword: ${keyword}`);
 
     // Python 스크립트 실행
-    // exex() Node.js 프로그램이 외부 프로그램(=다른 실행파일, 명령어, 스크립트)을 새 프로세스로 실행할 때 사용
+    // exex() : Node.js 프로그램이 외부 프로그램(=다른 실행파일, 명령어, 스크립트)을 새 프로세스로 실행할 때 사용
     exec(
       `py "${scriptPath}" "${keyword}"`,
       {
@@ -41,6 +45,7 @@ export async function GET(req: NextRequest) {
         }
 
         try {
+          // front 로 보내기
           const data = JSON.parse(stdout);
           log("Python script output:", data);
           resolve(NextResponse.json({ related: data }));

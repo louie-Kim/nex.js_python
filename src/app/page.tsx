@@ -16,9 +16,10 @@ export default function Home() {
 
     try {
       const res = await fetch(`/api?keyword=${encodeURIComponent(keyword)}`);
-      console.log(res);
-      
+
       const data = await res.json();
+      //  {"related":["봉지욱","봉지욱 기자","봉지욱 프로필","뉴스타파 봉지욱"]}
+      alert(`프론트에서데이어 왁인 ${JSON.stringify(data)}`);
       if (data.error) {
         setError(data.error);
       } else {
@@ -33,7 +34,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start p-8 bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">네이버 연관검색어 크롤링</h1>
+      <h1 className="text-2xl font-bold mb-4">네이버 연관검색어</h1>
 
       <div className="flex gap-2 mb-6">
         <input
@@ -42,6 +43,11 @@ export default function Home() {
           onChange={(e) => setKeyword(e.target.value)}
           placeholder="검색어 입력"
           className="border px-3 py-2 rounded-md w-64"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
         />
         <button
           onClick={handleSearch}
