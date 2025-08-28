@@ -39,9 +39,12 @@ def crawl_related_keywords(keyword: str):
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, container_sel)))
         time.sleep(2)
 
+
         keyword_sel = "#atcmp_keyword ul.kwd_lst li a.kwd span.kwd_txt"
         wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, keyword_sel)))
 
+        # driver.find_elements() 여러 개의 요소가져옴 => items 은 리스트
+        # strip()은 문자열 양쪽 공백을 제거
         items = driver.find_elements(By.CSS_SELECTOR, keyword_sel)
         related_keywords = [item.text.strip() for item in items if item.text.strip()]
 
@@ -54,14 +57,16 @@ def crawl_related_keywords(keyword: str):
             with open(json_path, "r", encoding="utf-8") as f:
                 try:
                     existing_data = json.load(f)
+                    # 1. existing_data가 리스트인지 확인, 아니면 [] 로 초기화
                     if not isinstance(existing_data, list):
-                        print("[DEBUG] 기존 데이터가 list 아님. 빈 리스트로 초기화")
                         existing_data = []
+                # 2. json 파일이 깨졌을도 [] 로 초기화
                 except json.JSONDecodeError:
                     existing_data = []
+        # JSON 파일이 없을 때, 파일은 있지만 크기가 0바이트 -> 그냥 빈 리스트부터 시작하자
         else:
             existing_data = []
-
+        # 같은 keyword 가진 항목 제거
         existing_data = [
             entry for entry in existing_data if entry.get("keyword") != keyword
         ]

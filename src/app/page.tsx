@@ -18,11 +18,19 @@ export default function Home() {
       const res = await fetch(`/api?keyword=${encodeURIComponent(keyword)}`);
 
       const data = await res.json();
-      //  {"related":["봉지욱","봉지욱 기자","봉지욱 프로필","뉴스타파 봉지욱"]}
-      alert(`프론트에서데이어 왁인 ${JSON.stringify(data)}`);
+      /**
+       * 프론트에서데이어 확인 
+       * {"keyword":"이더리움",
+       * "related":["이더리움","이더리움 시세","이더리움 전망","이더리움 etf"....}
+       */
+      alert(`프론트에서데이어 확인 ${JSON.stringify(data)}`);
+
       if (data.error) {
         setError(data.error);
       } else {
+        if (data.keyword) {
+          alert(`"${data.keyword}"는 이미 있는 키워드 입니다.`);
+        }
         setResults(data.related || []);
       }
     } catch (err: any) {
@@ -61,8 +69,8 @@ export default function Home() {
       {error && <p className="text-red-500">{error}</p>}
 
       <ul className="bg-white shadow-md rounded-md p-4 w-96">
-        {results.map((r, i) => (
-          <li key={i} className="border-b py-2 last:border-none">
+        {results.map((r) => (
+          <li key={r} className="border-b py-2 last:border-none">
             {r}
           </li>
         ))}

@@ -74,3 +74,35 @@ const path = require("path");
 이렇게 해야 함.
 
 
+-----------------------------------------------------------
+
+[item.text.strip() for item in items if item.text.strip()]
+
+1. for item in items 반복 시작
+2. if item.text.strip() 조건 검사 : .strip() 텍스트를 공백 제거한 결과가 빈 문자열이 아닐 때만 true
+3. item.text.strip(): 최종적으로리스트에 넣을값  값 리스트에 추가됨
+
+if "":              # False
+    print("실행X")
+
+if "   ".strip():   # "   " → "" → False
+    print("실행X")
+
+related_keywords = []
+for item in items:                      # 1. items에서 요소 하나씩 꺼냄
+    text = item.text.strip()            # 2. 텍스트 가져와 공백 제거
+    if text:                            # 3. 빈 문자열이 아니면
+        related_keywords.append(text)   # 4. 리스트에 추가
+
+
+-----------------------------------------------------------------------
+
+* * * * * *
+┬ ┬ ┬ ┬ ┬ ┬
+│ │ │ │ │ └─ 초(Seconds) [선택적, node-cron에서는 지원]
+│ │ │ │ └─── 요일 (0 - 7) (0 = 일요일, 7 = 일요일)
+│ │ │ └───── 월 (1 - 12)
+│ │ └─────── 일 (1 - 31)
+│ └───────── 시 (0 - 23)
+└─────────── 분 (0 - 59)
+

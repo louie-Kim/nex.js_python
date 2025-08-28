@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { exec } from "child_process";
 import path from "path";
 import { log } from "console";
+import fs from "fs";
 
 export async function GET(req: NextRequest) {
+
+  // 1. 키워드를 받고
   const keyword = req.nextUrl.searchParams.get("keyword") || "";
   console.log("Received keyword:", keyword);
 
@@ -14,13 +17,27 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  // 2. JSON에 원래있는지 검색
+  const jsonPath = path.join(process.cwd(), "api", "related_keywords.json");
+
+  
+  if (fs.existsSync(jsonPath)) {
+    const existing = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+    const found = existing.find((i:any) => i.keyword === keyword);
+    console.log(`이미 있는 키워드 입니다~~~~~:   ${JSON.stringify(found)}`);
+    
+    if (found) {
+       return NextResponse.json(found, { status: 200 });
+    } 
+  }
+
+  // 3. 없으면 Python 스크립트 실행
   return new Promise((resolve) => {
     // cwd() = Current Working Directory
     // D:\vsCodeWorkSpace\selenium_next.js\crawl + \api\crawl.py
     const scriptPath = path.join(process.cwd(), "api", "crawl.py");
 
-    console.log("Current working directory:@@@@@@@@@@@@@@@@@", process.cwd()); // 현재 작업중인 위치의 최상위 경로
-    
+    console.log("Current working directory:@@@", process.cwd()); // 현재 작업중인 위치의 최상위 경로
 
     console.log(`Executing script at: ${scriptPath} with keyword: ${keyword}`);
 

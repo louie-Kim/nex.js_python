@@ -57,3 +57,41 @@
 2025-08-27 20:09:31,221 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '한화']
 2025-08-27 20:10:00,437 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
 2025-08-27 20:10:00,437 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '야구']
+2025-08-28 12:38:01,551 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 12:38:01,551 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '오타니']
+2025-08-28 12:43:00,798 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 12:43:00,798 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '야구']
+2025-08-28 12:51:34,167 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 12:51:34,167 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '오타니']
+2025-08-28 12:51:49,124 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 12:51:49,124 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '오타니']
+2025-08-28 12:52:31,637 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 12:52:31,637 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '오타니']
+2025-08-28 14:11:00,601 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:11:00,601 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-08-28 14:11:00,601 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:11:00,601 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-08-28 14:11:00,601 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:11:00,601 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-08-28 14:12:00,515 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:12:00,515 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:12:00,515 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-08-28 14:12:00,515 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-08-28 14:12:00,515 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:12:00,515 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-08-28 14:27:00,572 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:27:00,573 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-08-28 14:27:00,574 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:27:00,574 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:27:00,574 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-08-28 14:27:00,574 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-08-28 14:28:00,561 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:28:00,561 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-08-28 14:28:00,564 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:28:00,564 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-08-28 14:28:00,569 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:28:00,569 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-08-28 14:44:18,771 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:44:18,772 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '"']
+2025-08-28 14:45:51,044 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-28 14:45:51,044 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', 'qwer']
