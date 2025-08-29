@@ -81,7 +81,7 @@ def crawl_related_keywords(keyword: str):
     return related_keywords  # list[str] 반환
 
 
-# 여기서 stdout으로 JSON을 내보냄
+# 여기서 stdout으로 JSON을 내보냄 : 
 if __name__ == "__main__":
 
     logging.info("crawl.py가 직접 실행되었습니다>>>>>>>>>.")
@@ -92,5 +92,5 @@ if __name__ == "__main__":
     else:
         keyword = sys.argv[1]
         result = crawl_related_keywords(keyword)
-        # ✅ 여기서 JSON으로 출력
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        # ✅ 여기서 JSON으로 전달 : 객체
+        print(json.dumps({"keyword": keyword, "related": result}, ensure_ascii=False, indent=2))

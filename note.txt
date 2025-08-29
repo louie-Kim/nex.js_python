@@ -106,3 +106,37 @@ for item in items:                      # 1. items에서 요소 하나씩 꺼냄
 │ └───────── 시 (0 - 23)
 └─────────── 분 (0 - 59)
 
+
+-----------------------------------------------------------------------
+
+1. Python (crawl.py)
+
+네이버에서 관련 검색어 크롤링 → list[str] 반환
+
+stdout 출력
+
+{ keyword, related } 객체 형태로 변환해 터미널로 전달
+
+2. Next.js API (route.ts)
+
+related_keywords.json 파일 읽기 (배열 구조)
+
+배열에서 .find()로 keyword에 맞는 객체 하나 추출
+
+API 응답
+
+NextResponse.json(found) → 항상 객체 응답
+
+3. 프론트 (page.tsx)
+
+const data = await res.json(); → 객체 수신
+
+setResults(data.related) → 배열 렌더링
+
+
+
+
+
+
+
+

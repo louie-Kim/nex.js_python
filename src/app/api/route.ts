@@ -5,7 +5,6 @@ import { log } from "console";
 import fs from "fs";
 
 export async function GET(req: NextRequest) {
-
   // 1. 키워드를 받고
   const keyword = req.nextUrl.searchParams.get("keyword") || "";
   console.log("Received keyword:", keyword);
@@ -20,16 +19,32 @@ export async function GET(req: NextRequest) {
   // 2. JSON에 원래있는지 검색
   const jsonPath = path.join(process.cwd(), "api", "related_keywords.json");
 
-  
-  if (fs.existsSync(jsonPath)) {
-    const existing = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-    const found = existing.find((i:any) => i.keyword === keyword);
-    console.log(`이미 있는 키워드 입니다~~~~~:   ${JSON.stringify(found)}`);
-    
-    if (found) {
-       return NextResponse.json(found, { status: 200 });
-    } 
+  let existing: any[] = [];
+
+  if (fs.existsSync(jsonPath) && fs.statSync(jsonPath).size > 0) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+
+      existing = Array.isArray(parsed) ? parsed : [];
+      console.log(`Parsed existing data >>>>>>>>>>: ${JSON.stringify(existing)}`);
+      
+
+      // ✅ 배열에서 객체 꺼내기
+      const found = existing.find((i: any) => i.keyword === keyword);
+      console.log(`Found existing entry >>>>>>>>>>>>>: ${JSON.stringify(found)}`);
+      
+
+      if (found) {
+        // 객체 하나만 반환
+        return NextResponse.json(found); // ← 이제 항상 객체
+      }
+    } catch (err) {
+      console.error("JSON 파싱 오류:", err);
+      existing = [];
+    }
   }
+
+  console.log(`기존 데이터 확인: ${JSON.stringify(existing)}`);
 
   // 3. 없으면 Python 스크립트 실행
   return new Promise((resolve) => {
@@ -62,10 +77,12 @@ export async function GET(req: NextRequest) {
         }
 
         try {
-          // front 로 보내기
+          //  print(json.dumps({"keyword": keyword, "related": result})
+          // ✅ JOSN 파싱
           const data = JSON.parse(stdout);
           log("Python script output:", data);
-          resolve(NextResponse.json({ related: data }));
+          // ✅ 다시 JSOM 형태로 보냄
+          resolve(NextResponse.json(data));
         } catch {
           resolve(
             NextResponse.json(
