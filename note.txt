@@ -111,11 +111,11 @@ for item in items:                      # 1. items에서 요소 하나씩 꺼냄
 
 1. Python (crawl.py)
 
-네이버에서 관련 검색어 크롤링 → list[str] 반환
+네이버에서 관련 검색어 크롤링 → 'list[str]' 반환
 
 stdout 출력
 
-{ keyword, related } 객체 형태로 변환해 터미널로 전달
+{ keyword, related } '객체' 형태로 변환해 터미널로 전달
 
 2. Next.js API (route.ts)
 

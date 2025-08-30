@@ -25,26 +25,33 @@ export async function GET(req: NextRequest) {
     try {
       const parsed = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
 
+      // parsed가 배열이면 그냥 배열인 parsed고 배열이 아니면 [] 빈 배열 초기화
       existing = Array.isArray(parsed) ? parsed : [];
-      console.log(`Parsed existing data >>>>>>>>>>: ${JSON.stringify(existing)}`);
-      
+      console.log(
+        `Parsed existing data >>>>>>>>>>: ${JSON.stringify(existing)}`
+      );
 
       // ✅ 배열에서 객체 꺼내기
       const found = existing.find((i: any) => i.keyword === keyword);
-      console.log(`Found existing entry >>>>>>>>>>>>>: ${JSON.stringify(found)}`);
-      
+      console.log(
+        `Found existing keyword >>>>>>>>>>>>>: ${JSON.stringify(found)}`
+      );
 
+      // 중복 키워드 발견시..
       if (found) {
         // 객체 하나만 반환
-        return NextResponse.json(found); // ← 이제 항상 객체
+        // return NextResponse.json(found); // ← 이제 항상 객체
+        // ✅ 중복 키워드면 에러 메시지 + 기존 데이터 반환
+        return NextResponse.json({
+          error: `"${keyword}"는 이미 저장된 키워드입니다.`,
+          ...found, // { keyword: "...", related: [...] }
+        });
       }
     } catch (err) {
       console.error("JSON 파싱 오류:", err);
       existing = [];
     }
   }
-
-  console.log(`기존 데이터 확인: ${JSON.stringify(existing)}`);
 
   // 3. 없으면 Python 스크립트 실행
   return new Promise((resolve) => {

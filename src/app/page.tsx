@@ -13,34 +13,19 @@ export default function Home() {
     setLoading(true);
     setError("");
     setResults([]);
-    /**
-     * fetch()가 주는 Response 객체의 특성
-     * res.json()은 내부적으로 JON.parse를 해주기 때문에, 다시 JSON.parse 할 필요가 없어요
-     */
 
     try {
       const res = await fetch(`/api?keyword=${encodeURIComponent(keyword)}`);
+      const data = await res.json(); // .json() 이미 파싱된 상태
 
-      const data = await res.json(); // ✅ 여기서 route.ts 의 JSON 응답을 받음
-      /**
-       * 프론트에서데이어 확인
-       * {"keyword":"장마",
-       * "related":["장마기간","장마","장만옥","장마 끝"...]}
-       */
-      alert(data); // [object Object]
-      
-      // 파싱 된거를 다시 JSON.stringify로 문자열화
-      alert(`프론트에서데이어 확인 ${JSON.stringify(data)}`);
+      // 응답 데이터 확인용
+      alert(`프론트에서 데이터 확인: ${JSON.stringify(data)}`);
 
       if (data.error) {
         setError(data.error);
       } else {
-        if (data.keyword === keyword) {
-          alert(`${data.keyword} is already exists: `);
-        } else {
-          setResults(data.related || []);
-
-        }
+        // ✅ 바로 결과 렌더링
+        setResults(data.related || []);
       }
     } catch (err: any) {
       setError("검색 중 오류 발생");
@@ -75,7 +60,7 @@ export default function Home() {
       </div>
 
       {loading && <p>불러오는 중...</p>}
-      {error && <p className="text-red-300">{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
 
       <ul className="bg-white shadow-md rounded-md p-4 w-96">
         {results.map((r, i) => (

@@ -161,3 +161,11 @@
 2025-08-29 16:58:06,045 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '장마']
 2025-08-29 17:02:43,385 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
 2025-08-29 17:02:43,385 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '장마']
+2025-08-30 13:49:53,093 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-30 13:49:53,093 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비소식']
+2025-08-30 13:50:45,932 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-30 13:50:45,932 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '장마']
+2025-08-30 14:08:01,790 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-30 14:08:01,790 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '야구']
+2025-08-30 14:15:57,311 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-08-30 14:15:57,311 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '오타니']
