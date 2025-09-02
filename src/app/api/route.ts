@@ -1,10 +1,57 @@
+// 이 API 라우트는 Edge 말고 Node 환경에서 실행시켜!
+export const runtime = "nodejs";
+
 import { NextRequest, NextResponse } from "next/server";
 import { exec } from "child_process";
 import path from "path";
 import { log } from "console";
 import fs from "fs";
+import cron from "node-cron";
+import { prisma } from "@/prisma";
 
-export async function GET(req: NextRequest) {
+// 로컬(Windows)에서는 py, 서버(리눅스)에서는 python3 실행
+const pythonCmd = process.platform === "win32" ? "py" : "python3";
+
+// D:\vsCodeWorkSpace\selenium_next.js\crawl + \api\crawl.py
+// process.cwd() = 현재 작업중인 위치의 최상위 경로
+const scriptPath = path.join(process.cwd(), "api", "crawl.py");
+
+// 인기 키워드 리스트 : 한번에 여러개 크롤링
+const frequentKeywords = ["비트코인", "이더리움", "삼성전자"];
+
+// -------- 공통 함수 --------
+// Python 스크립트 실행 함수
+function runPython(keyword: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    // Python 스크립트 실행
+    // exex() : Node.js 프로그램이 외부 프로그램(=다른 실행파일, 명령어, 스크립트)을 새 프로세스로 실행할 때 사용
+    exec(
+      `${pythonCmd} "${scriptPath}" "${keyword}"`,
+      {
+        // Node.js 쪽에서도 UTF-8로 읽고, Python 쪽에서도 UTF-8로 내보내게 맞추는 옵션
+        encoding: "utf8",
+        env: { ...process.env, PYTHONIOENCODING: "utf-8" },
+      },
+      (err, stdout, stderr) => {
+        if (err) {
+          reject(new Error(stderr));
+          return;
+        }
+        try {
+          //  print(json.dumps({"keyword": keyword, "related": result})
+          // ✅ JSON 파싱
+          const data = JSON.parse(stdout);
+          resolve(data);
+        } catch (e) {
+          reject(new Error("JSON 파싱 실패: " + stdout));
+        }
+      }
+    );
+  });
+}
+
+// -------- API 요청 처리 --------
+export async function GET(req: NextRequest): Promise<Response> {
   // 1. 키워드를 받고
   const keyword = req.nextUrl.searchParams.get("keyword") || "";
   console.log("Received keyword:", keyword);
@@ -31,7 +78,7 @@ export async function GET(req: NextRequest) {
         `Parsed existing data >>>>>>>>>>: ${JSON.stringify(existing)}`
       );
 
-      // ✅ 배열에서 객체 꺼내기
+      // ✅ 배열에서 중복키워드 객체 꺼내기
       const found = existing.find((i: any) => i.keyword === keyword);
       console.log(
         `Found existing keyword >>>>>>>>>>>>>: ${JSON.stringify(found)}`
@@ -53,52 +100,50 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // 3. 없으면 Python 스크립트 실행
-  return new Promise((resolve) => {
-    // cwd() = Current Working Directory
-    // D:\vsCodeWorkSpace\selenium_next.js\crawl + \api\crawl.py
-    const scriptPath = path.join(process.cwd(), "api", "crawl.py");
+  try {
+    // 3. 없으면 Python 스크립트 실행
+    const data: any = await runPython(keyword);
 
-    console.log("Current working directory:@@@", process.cwd()); // 현재 작업중인 위치의 최상위 경로
+    if (data.error) {
+      return NextResponse.json(data, { status: 400 });
+    }
 
-    console.log(`Executing script at: ${scriptPath} with keyword: ${keyword}`);
+    // DB 저장 (중복시 upsert)
+    await prisma.keyword.upsert({
+      where: { keyword: data.keyword },
+      update: { related: data.related },
+      create: { keyword: data.keyword, related: data.related },
+    });
 
-    // Python 스크립트 실행
-    // exex() : Node.js 프로그램이 외부 프로그램(=다른 실행파일, 명령어, 스크립트)을 새 프로세스로 실행할 때 사용
-    exec(
-      `py "${scriptPath}" "${keyword}"`,
-      {
-        // Node.js 쪽에서도 UTF-8로 읽고, Python 쪽에서도 UTF-8로 내보내게 맞추는 옵션
-        encoding: "utf8",
-        env: { ...process.env, PYTHONIOENCODING: "utf-8" },
-      },
-      (err, stdout, stderr) => {
-        if (err) {
-          resolve(
-            NextResponse.json(
-              { error: "Python 실행 오류", detail: stderr },
-              { status: 500 }
-            )
-          );
-          return;
-        }
-
-        try {
-          //  print(json.dumps({"keyword": keyword, "related": result})
-          // ✅ JOSN 파싱
-          const data = JSON.parse(stdout);
-          log("Python script output:", data);
-          // ✅ 다시 JSOM 형태로 보냄
-          resolve(NextResponse.json(data));
-        } catch {
-          resolve(
-            NextResponse.json(
-              { error: "파싱 실패", raw: stdout },
-              { status: 500 }
-            )
-          );
-        }
-      }
+    // ✅ 다시 JSON 형태로 보냄
+    return NextResponse.json(data);
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: "Python 실행/DB 오류", detail: err.message },
+      { status: 500 }
     );
-  });
+  }
 }
+
+// -------- Cron Job (서버 실행 시 등록) --------
+// 1분마다 frequentKeywords 자동 크롤링
+cron.schedule("*/1 * * * *", async () => {
+  console.log("⏰ 1분마다 인기 키워드 크롤링 실행");
+
+  for (const keyword of frequentKeywords) {
+    try {
+      const data: any = await runPython(keyword);
+
+      if (!data.error) {
+        await prisma.keyword.upsert({
+          where: { keyword: data.keyword },
+          update: { related: data.related },
+          create: { keyword: data.keyword, related: data.related },
+        });
+        console.log("DB 저장 완료:", data.keyword);
+      }
+    } catch (e) {
+      console.error("자동 크롤링 오류:", e);
+    }
+  }
+});

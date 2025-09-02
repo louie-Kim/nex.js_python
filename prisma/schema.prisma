@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Keyword {
+  id      Int      @id @default(autoincrement())
+  keyword String   @unique
+  related Json     // Python 결과 리스트를 JSON으로 저장
+  createdAt DateTime @default(now())
+}
+
+
+// pnpm prisma migrate dev --name init  -> 마이그레이션 적용
