@@ -22,6 +22,7 @@ export default function Home() {
       alert(`프론트에서 데이터 확인: ${JSON.stringify(data)}`);
 
       if (data.error) {
+        // error: `"${keyword}"는 이미 저장된 키워드입니다!!!.` 이거 받음
         setError(data.error);
       } else {
         // ✅ 바로 결과 렌더링
