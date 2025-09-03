@@ -118,16 +118,17 @@ export async function GET(req: NextRequest): Promise<Response> {
     // ✅ 다시 JSON 형태로 보냄
     return NextResponse.json(data);
   } catch (err: unknown) {
-    if (err instanceof Error) {
-      return NextResponse.json(
-        { error: "Python 실행/DB 오류", detail: err.message },
-        { status: 500 }
-      );
+    let detail = "알 수 없는 오류";
+    // err가 객체인지 확인한 다음, "message"라는 속성이 있는지 검사
+    if (err && typeof err === "object" && "message" in err) {
+      // 에러 메세지를 스트링타입으로 바꿔서 detail에
+      detail = String((err as any).message);
+    } else if (typeof err === "string") {
+      detail = err;
     }
 
-    // Error 객체가 아닐 경우 대비
     return NextResponse.json(
-      { error: "Python 실행/DB 오류", detail: String(err) },
+      { error: "Python 실행/DB 오류", detail },
       { status: 500 }
     );
   }
