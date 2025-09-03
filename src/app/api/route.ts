@@ -63,41 +63,39 @@ export async function GET(req: NextRequest): Promise<Response> {
     );
   }
 
-  // 2. JSON에 원래있는지 검색
-  const jsonPath = path.join(process.cwd(), "api", "related_keywords.json");
+  
+  // 2. 중복키워드 Prisma DB에서 확인
+  let existing: any = null;
 
-  let existing: any[] = [];
+  try {
+    // ✅ Prisma DB에서 해당 키워드 존재 여부 확인
+    existing = await prisma.keyword.findUnique({
+      where: { keyword },
+    });
 
-  if (fs.existsSync(jsonPath) && fs.statSync(jsonPath).size > 0) {
-    try {
-      const parsed = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+    console.log(
+      `DB에서 찾은 existing data >>>>>>>>>>: ${JSON.stringify(existing)}`
+    );
 
-      // parsed가 배열이면 그냥 배열인 parsed고 배열이 아니면 [] 빈 배열 초기화
-      existing = Array.isArray(parsed) ? parsed : [];
-      console.log(
-        `Parsed existing data >>>>>>>>>>: ${JSON.stringify(existing)}`
-      );
+    // ✅ 배열에서 중복키워드 객체 꺼내기
+    const found = existing;
+    console.log(
+      `Found existing keyword >>>>>>>>>>>>>: ${JSON.stringify(found)}`
+    );
 
-      // ✅ 배열에서 중복키워드 객체 꺼내기
-      const found = existing.find((i: any) => i.keyword === keyword);
-      console.log(
-        `Found existing keyword >>>>>>>>>>>>>: ${JSON.stringify(found)}`
-      );
-
-      // 중복 키워드 발견시..
-      if (found) {
-        // 객체 하나만 반환
-        // return NextResponse.json(found); // ← 이제 항상 객체
-        // ✅ 중복 키워드면 에러 메시지 + 기존 데이터 반환
-        return NextResponse.json({
-          error: `"${keyword}"는 이미 저장된 키워드입니다.`,
-          ...found, // { keyword: "...", related: [...] }
-        });
-      }
-    } catch (err) {
-      console.error("JSON 파싱 오류:", err);
-      existing = [];
+    // 중복 키워드 발견시..
+    if (found) {
+      // 객체 하나만 반환
+      // return NextResponse.json(found); // ← 이제 항상 객체
+      // ✅ 중복 키워드면 에러 메시지 + 기존 데이터 반환
+      return NextResponse.json({
+        error: `"${keyword}"는 이미 저장된 키워드입니다.`,
+        ...found, // { keyword: "...", related: [...] }
+      });
     }
+  } catch (err) {
+    console.error("DB 조회 오류:", err);
+    existing = null;
   }
 
   try {
