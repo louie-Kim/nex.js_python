@@ -241,3 +241,41 @@
 2025-09-03 13:55:10,986 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
 2025-09-03 13:55:20,815 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
 2025-09-03 13:55:20,815 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-09-03 18:08:36,638 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:08:36,638 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '추성훈']
+2025-09-03 18:09:00,510 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:09:00,510 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-09-03 18:09:10,556 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:09:10,556 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-09-03 18:09:20,232 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:09:20,232 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-09-03 18:10:00,414 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:10:00,414 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-09-03 18:10:03,987 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:10:03,988 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '스테이크']
+2025-09-03 18:10:10,842 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:10:10,842 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-09-03 18:10:20,687 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:10:20,687 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-09-03 18:11:00,434 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:11:00,434 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-09-03 18:11:10,623 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:11:10,623 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-09-03 18:11:12,903 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:11:12,903 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '감자']
+2025-09-03 18:11:20,744 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:11:20,744 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-09-03 18:12:00,437 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:12:00,437 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-09-03 18:12:10,512 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:12:10,512 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-09-03 18:12:14,203 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:12:14,203 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '매불쇼']
+2025-09-03 18:12:20,932 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:12:20,932 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
+2025-09-03 18:13:00,391 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:13:00,391 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '비트코인']
+2025-09-03 18:13:10,458 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:13:10,458 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '이더리움']
+2025-09-03 18:13:20,059 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-03 18:13:20,059 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '삼성전자']
