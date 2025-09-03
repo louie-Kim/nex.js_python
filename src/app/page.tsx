@@ -27,8 +27,12 @@ export default function Home() {
         // ✅ 바로 결과 렌더링
         setResults(data.related || []);
       }
-    } catch (err: any) {
-      setError("검색 중 오류 발생");
+    } catch (err: unknown) {
+      let message = "검색 중 오류 발생";
+      if (err instanceof Error) {
+        message = err.message; // 원래 에러 메시지 반영 가능
+      }
+      setError(message);
     } finally {
       setLoading(false);
     }
