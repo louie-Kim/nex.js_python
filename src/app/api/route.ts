@@ -117,9 +117,10 @@ export async function GET(req: NextRequest): Promise<Response> {
 
     // ✅ 다시 JSON 형태로 보냄
     return NextResponse.json(data);
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const error = err as Error; 
     return NextResponse.json(
-      { error: "Python 실행/DB 오류", detail: err.message },
+      { error: "Python 실행/DB 오류", detail: error.message },
       { status: 500 }
     );
   }
