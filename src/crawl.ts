@@ -41,7 +41,11 @@ async function crawlRelatedKeywords(keyword: string): Promise<string[]> {
   try {
     console.log("go to naver");
 
-    await page.goto("https://www.naver.com", { waitUntil: "networkidle2" });
+    // await page.goto("https://www.naver.com", { waitUntil: "networkidle2" });
+    await page.goto("https://www.naver.com", {
+      waitUntil: "domcontentloaded", // networkidle 대신 DOM 로드만 기다리기
+      timeout: 60000, // 60초로 늘리기
+    });
 
     await page.waitForSelector("#query", { timeout: 10000 });
     await page.type("#query", keyword);
