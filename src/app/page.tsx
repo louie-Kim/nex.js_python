@@ -14,12 +14,11 @@ export default function Home() {
     setError("");
     setResults([]);
 
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "";
     try {
-      // 외부 서비스로 배포된 API 경로 사용
+      // 외부 서비스(render.com)로 배포된 API 경로 사용
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api?keyword=${encodeURIComponent(
-          keyword
-        )}`
+        `${baseUrl}/api?keyword=${encodeURIComponent(keyword)}`
       );
       const data = await res.json(); // .json() 이미 파싱된 상태
 
