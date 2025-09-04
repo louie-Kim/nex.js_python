@@ -303,3 +303,5 @@
 2025-09-04 16:32:57,267 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '권나라']
 2025-09-04 16:56:29,348 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
 2025-09-04 16:56:29,349 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '권나라']
+2025-09-04 17:08:21,375 - INFO - crawl.py가 직접 실행되었습니다>>>>>>>>>.
+2025-09-04 17:08:21,375 - INFO - sys.argv 전체>>>>>>>>>>>>>>>>>>: ['D:\\vsCodeWorkSpace\\selenium_next.js\\crawl\\api\\crawl.py', '손흥민']
