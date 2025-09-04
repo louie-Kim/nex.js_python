@@ -133,7 +133,17 @@ const data = await res.json(); → 객체 수신
 
 setResults(data.related) → 배열 렌더링
 
+-----------------------------------------------------------------
 
+npx prisma generate
+schema.prisma를 읽어서 Prisma Client를 다시 생성
+
+npx prisma migrate dev --name init
+prisma/migrations 폴더에 SQL 마이그레이션 파일 생성
+
+
+npx prisma migrate reset --schema
+데이터 초기화
 
 
 
