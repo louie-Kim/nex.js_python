@@ -2,53 +2,10 @@
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
-import { exec } from "child_process";
-import path from "path";
-import { log } from "console";
-import fs from "fs";
-import cron from "node-cron";
 import { prisma } from "@/prisma";
+import { crawlRelatedKeywords } from "@/crawl";
 
-// 로컬(Windows)에서는 py, 서버(리눅스)에서는 python3 실행
-const pythonCmd = process.platform === "win32" ? "py" : "python3";
 
-// D:\vsCodeWorkSpace\selenium_next.js\crawl + \api\crawl.py
-// process.cwd() = 현재 작업중인 위치의 최상위 경로
-const scriptPath = path.join(process.cwd(), "api", "crawl.py");
-
-// 인기 키워드 리스트 : 한번에 여러개 크롤링
-const frequentKeywords = ["비트코인", "이더리움", "삼성전자"];
-
-// -------- 공통 함수 --------
-// Python 스크립트 실행 함수
-function runPython(keyword: string): Promise<any> {
-  return new Promise((resolve, reject) => {
-    // Python 스크립트 실행
-    // exex() : Node.js 프로그램이 외부 프로그램(=다른 실행파일, 명령어, 스크립트)을 새 프로세스로 실행할 때 사용
-    exec(
-      `${pythonCmd} "${scriptPath}" "${keyword}"`,
-      {
-        // Node.js 쪽에서도 UTF-8로 읽고, Python 쪽에서도 UTF-8로 내보내게 맞추는 옵션
-        encoding: "utf8",
-        env: { ...process.env, PYTHONIOENCODING: "utf-8" },
-      },
-      (err, stdout, stderr) => {
-        if (err) {
-          reject(new Error(stderr));
-          return;
-        }
-        try {
-          //  print(json.dumps({"keyword": keyword, "related": result})
-          // ✅ JSON 파싱
-          const data = JSON.parse(stdout);
-          resolve(data);
-        } catch (e) {
-          reject(new Error("JSON 파싱 실패: " + stdout));
-        }
-      }
-    );
-  });
-}
 
 // -------- API 요청 처리 --------
 export async function GET(req: NextRequest): Promise<Response> {
@@ -98,10 +55,11 @@ export async function GET(req: NextRequest): Promise<Response> {
   }
 
   try {
-    // 3. 중복 없으면 Python 스크립트 실행
-    const data: any = await runPython(keyword);
+    // 3. 중복 없으면 Puppeteer 스크립트 실행
+    const related = await crawlRelatedKeywords(keyword);
+    const data = { keyword, related };
 
-    if (data.error) {
+    if (data.related.length === 0) {
       return NextResponse.json(data, { status: 400 });
     }
 
@@ -126,12 +84,12 @@ export async function GET(req: NextRequest): Promise<Response> {
     }
 
     return NextResponse.json(
-      { error: "Python 실행/DB 오류", detail },
+      { error: "크롤링 실행/DB 오류", detail },
       { status: 500 }
     );
   }
 }
-
+// const frequentKeywords = ["비트코인", "이더리움", "삼성전자"];
 // -------- Cron Job (서버 실행 시 등록) --------
 // 1분마다 frequentKeywords 자동 크롤링
 // cron.schedule("*/1 * * * *", async () => {
