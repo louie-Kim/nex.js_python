@@ -15,7 +15,12 @@ export default function Home() {
     setResults([]);
 
     try {
-      const res = await fetch(`/api?keyword=${encodeURIComponent(keyword)}`);
+      // 외부 서비스로 배포된 API 경로 사용
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api?keyword=${encodeURIComponent(
+          keyword
+        )}`
+      );
       const data = await res.json(); // .json() 이미 파싱된 상태
 
       // 응답 데이터 확인용
