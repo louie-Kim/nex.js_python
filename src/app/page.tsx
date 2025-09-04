@@ -20,6 +20,8 @@ export default function Home() {
       const res = await fetch(
         `${baseUrl}/api?keyword=${encodeURIComponent(keyword)}`
       );
+
+      // const res = await fetch(`/api?keyword=${encodeURIComponent(keyword)}`);
       const data = await res.json(); // .json() 이미 파싱된 상태
 
       // 응답 데이터 확인용

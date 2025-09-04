@@ -146,7 +146,25 @@ npx prisma migrate reset --schema
 데이터 초기화
 
 
+---------------------------------------------------------------------
 
+1. puppeteer full 패키지의 특징
+
+설치할 때 자동으로 Chromium을 다운로드해요.
+
+그래서 실행 경로(executablePath)를 따로 지정할 필요가 없어요.
+
+로컬 Windows / macOS / Linux 환경에서 바로 실행 가능합니다.
+
+즉, 로컬에서 puppeteer.launch()만 해주면 바로 브라우저가 뜹니다.
+
+2. 서버 환경(Render, Vercel, AWS 등)에서는?
+
+용량 문제 때문에 puppeteer full 패키지는 배포 시 비효율적일 수 있어요.
+
+서버리스 환경에서는 puppeteer-core + @sparticuz/chromium 조합이 보통 권장됩니다.
+
+왜냐하면 puppeteer full 패키지는 Chromium을 포함하고 있어서 100MB~150MB 정도 빌드 크기가 커지거든요.
 
 
 
