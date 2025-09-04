@@ -13,10 +13,12 @@
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
+    "@sparticuz/chromium": "^138.0.2",
     "next": "15.5.0",
     "node-cron": "^4.2.1",
     "postgres": "^3.4.7",
     "puppeteer": "^24.18.0",
+    "puppeteer-core": "^24.18.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
